@@ -2,7 +2,7 @@
 h1 {
     text-align: center;
     font-family: Papyrus, fantasy;
-    font-size: 24px;
+    font-size: 50px;
     font-style: normal;
     font-variant: normal;
     font-weight: 700;
@@ -13,6 +13,7 @@ h2 {
     text-align: center;
     font-family: Papyrus, fantasy;
     font-weight: 700; 
+    font-size: 30px;
 }
 
 .linea {
@@ -30,7 +31,8 @@ h2 {
 
 #imagen-baner {
     width: 100%;
-    height: 200px;
+    height: 400px;
+    background-size: cover;
 }
 
 body {
@@ -39,15 +41,20 @@ body {
 }
 
 .card {
-    width: 228px;
+    width: 235px;
     height: 255px;
     display: flex;
     margin: 45px;
-    border: 1px solid black;
-    border-radius: 76px;
+    border: 10px solid #bcbcaa;
+    border-radius: 10px;
     cursor: pointer;
+    box-shadow: 0px 10px 10px -6px rgb(153, 153, 153);
 }
 
+img.card:hover {
+   border-color:#bcbcaa;
+   border-width: 20px;
+}
 .card-container {
     display: flex;
     justify-content: center;
@@ -111,23 +118,35 @@ body {
 
 /* Estilos para el botón de filtro */
 .select {
-    background-color: #4CAF50;
+    background-color: #758076;
     border: none;
-    color: white;
-    padding: 10px 24px;
+
+    padding: 10px ;
     text-align: center;
     text-decoration: none;
     display: flex;
-    font-size: 16px;
-    margin: 4px 2px;
+    font-size: 25px;
+    margin: 4px 10px;
     cursor: pointer;
     border-radius: 4px;
     transition-duration: 0.4s;
+    
 }
+input::placeholder {
+    content: center;
+    justify-content: space-around;
+    color: white;
+    font-family: 'Helvetica', sans-serif;
+    /*tipografía texto*/
+    border-radius: 10px;
+    /*bordes redondos*/
+    margin-top: 1rem;
+    text-align: center;
+  }
 
 /* Estilos para el hover del botón */
 .select:hover {
-    background-color: #3e8e41;
+    background-color: #c7d0c7;
     color: white;
 }
 
@@ -138,7 +157,7 @@ body {
 }
 
 .div-select {
-    margin: 4px 2px;
+    margin: 10px 5px;
     cursor: pointer;
     width: 100%;
     display: flex;
@@ -148,7 +167,7 @@ body {
 
 /* Estilos para el hover del botón */
 .select:hover {
-    background-color: #3e8e41;
+    background-color: hsl(120, 1%, 33%);
     color: white;
 }
 
@@ -173,7 +192,7 @@ button {
     padding: 10px 25px;
     position: absolute;
     top: 30%;
-    margin-left: 46%;
+    margin-left: 23%;
 }
 
 .modal-container {
@@ -213,7 +232,16 @@ button {
     font-variant: normal; 
     line-height: 26.4px;
     text-align: justify;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 5%;
+    margin-right: 5%;
+   
+   
+}
+
+td{
+    height: 150px;
+}
+tr{
+    width: 200px;
 }
 

@@ -53,6 +53,7 @@ interfaz web donde el usuario puede visualizar y manipular data, encontrar la in
 recrearse con nuestra interfaz.
 
 Fuimos fieles al primer diseño en Figma que adaptamos para nuestro objetivo:
+(https://www.figma.com/file/V9s8qZDiOlmUPoUPZXYSf3/Untitled?type=design&node-id=0-1&t=Fedv9tNBBzXHta7H-0),
 ![Prototipo Figma](https://github.com/annmora13/DEV007-data-lovers/blob/main/Prototipo1.png)
 ![Prototipo2 Figma](https://github.com/annmora13/DEV007-data-lovers/blob/main/Prototipo2.png)
 

@@ -3,14 +3,14 @@
 
 
 //se crea funcion filtro por año
-export function filtrarPorAnyo(data, option) {
-  const datafiltrada = data.filter(pelicula => pelicula.release_date === option)
+export function filtrarPorAnyo(data, date) {
+  const datafiltrada = data.filter(pelicula => pelicula.release_date === date)
   return datafiltrada
     
 }
 
-export function filtrarByDirector(data, option){
-  const datafiltrada = data.filter(director => director.director === option)
+export function filtrarByDirector(data, director){
+  const datafiltrada = data.filter(film => film.director === director)
   return datafiltrada
 }
 
@@ -22,13 +22,13 @@ export function getFilmById(data, filmId) {
 
 
 //se crea funion buscar por nombre de la pelicula
-export function searchName(data,nombreBuscar) {
-  const dataFiltrada = data.filter((studioGhibli) => studioGhibli.title.toLowerCase().includes(nombreBuscar.toLowerCase()))
+export function searchFilmsByName(data,nombreBuscar) {
+  const dataFiltrada = data.filter(film => film.title.toLowerCase().includes(nombreBuscar.toLowerCase()))//include sirve para comparar si un string esta en otro string
   return dataFiltrada
 }
 
 //se crea funcion para ordenar de forma alfabetica, ascdente
-export function orderMovies(data,upward) {
+export function orderMovies(data,orderType) {
   const dataFiltrada = data.sort((a, b) =>{
     const nameA = a.title;
     const nameB = b.title;
@@ -39,7 +39,7 @@ export function orderMovies(data,upward) {
     }
     
   })
-  if(upward === "AZ"){
+  if(orderType === "AZ"){
     return dataFiltrada
   } else {
     return dataFiltrada.reverse()

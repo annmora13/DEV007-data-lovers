@@ -1,6 +1,4 @@
-import { filtrarPorAnyo, filtrarByDirector, searchName, orderMovies, getFilmById } from './data.js'
-
-
+import { filtrarPorAnyo, filtrarByDirector, searchFilmsByName, orderMovies, getFilmById } from './data.js'
 import data from "./data/ghibli/ghibli.js";
 
 //se crea la variable que guarda toda la data
@@ -16,16 +14,13 @@ const modalInfo = document.getElementById("modal-info");
 const close = document.getElementById("close");
 const cardTitle = document.getElementById("card-title");
 
+
 //se obtienen los elementos de las opciones de busqueda
-const seleccionador = document.getElementById("select-director");
+const selectDirector = document.getElementById("select-director");
 const selectYear = document.getElementById("select-year");
 const inputBuscar = document.getElementById("search");
 const selectOrderMovies = document.getElementById("order-movies");
 
-// se muestran las peliculas y las opciones para los filtros de director y año
-showMovies(dataStudioGhibli);
-showSelect(dataStudioGhibli);
-//modal.style.display="none"
 
 //muestra las peliculas
 function showMovies(films) {
@@ -47,17 +42,14 @@ function showMovies(films) {
   });
 }
 
-//funcion para mostrar las peliculas cuando el usario da click al boton o la imagen
-function showSelect(pelis) {
-  //Aqui mostramos la lista desplegabl de los directores
-  seleccionador.style.display = "block";
-  selectYear.style.display = "block";
+function showSelect(films) {
 
-  //Aquí creamos variables para los directores unicos
+
+  //Aquí creamos variables para los directores unicos y años
   const directoresUnicos = [];
   const filmYear = [];
 
-  pelis.forEach((film) => {
+  films.forEach((film) => {
     //Aqui preguntamos si nuestra variable directores unicos tiene el director
     //Si no lo tiene, le agregamos el director
     //se utiliza la función include
@@ -69,11 +61,11 @@ function showSelect(pelis) {
       option.text = film.director;
 
       //Aquí hacemos un openchild que abre un elemnto hijo a un elemto padre que es un select- es parecido a lo del inner.HTML
-      seleccionador.appendChild(option);
+      selectDirector.appendChild(option);
     }
 
-    //Aqui preguntamos si nuestra variable directores unicos tiene el director
-    //Si no lo tiene, le agregamos el director
+    //Aqui preguntamos si nuestra variable años tiene el añ0o
+    //Si no lo tiene, le agregamos el año
     //se utiliza la función include
     if (!filmYear.includes(film.release_date)) {
       filmYear.push(film.release_date);
@@ -86,6 +78,7 @@ function showSelect(pelis) {
     }
   });
 }
+
 
 function showInfoFilm(filmId) {
   cardContainer.innerHTML = "";
@@ -164,14 +157,14 @@ function showInfoCharacter(character) {
 }
 
 //Aqui llamamos la funcion cuando el usuario de click
-seleccionador.addEventListener("change", (e) => {
+selectDirector.addEventListener("change", (e) => {
   cardCharacters.innerHTML = "";
   cardPlaces.innerHTML = "";
   cardVehicles.innerHTML = "";
   cardTitle.innerHTML = "";
-  const valueOp = e.target.value;
-  const dataDirector = filtrarByDirector(dataStudioGhibli, valueOp);
-  showMovies(dataDirector)
+  const directorSelected = e.target.value;//targe es el elemento que disparo el evento
+  const filmsByDirector = filtrarByDirector(dataStudioGhibli, directorSelected);
+  showMovies(filmsByDirector)
 });
 
 selectYear.addEventListener("change", (e) => {
@@ -179,8 +172,8 @@ selectYear.addEventListener("change", (e) => {
   cardPlaces.innerHTML = "";
   cardVehicles.innerHTML = "";
   cardTitle.innerHTML = "";
-  const valueOption = e.target.value;
-  const resultFilterYear = filtrarPorAnyo(dataStudioGhibli, valueOption);
+  const yearSlected = e.target.value;
+  const resultFilterYear = filtrarPorAnyo(dataStudioGhibli, yearSlected);
   showMovies(resultFilterYear);
 });
 
@@ -191,7 +184,7 @@ inputBuscar.addEventListener("input", () => {
   cardPlaces.innerHTML = "";
   cardVehicles.innerHTML = "";
   cardTitle.innerHTML = "";
-  const filterName = searchName(dataStudioGhibli, inputBuscar.value);
+  const filterName = searchFilmsByName(dataStudioGhibli, inputBuscar.value);
   if (filterName.length === 0) {
     alert("No se encontraron resultados");
   }
@@ -203,15 +196,16 @@ selectOrderMovies.addEventListener("change", (e) => {
   cardPlaces.innerHTML = "";
   cardVehicles.innerHTML = "";
   cardTitle.innerHTML = "";
-  const valueOption = e.target.value;
-  const resultOrderMovies = orderMovies(dataStudioGhibli, valueOption);
+  const orderType = e.target.value;
+  const resultOrderMovies = orderMovies(dataStudioGhibli, orderType);
   showMovies(resultOrderMovies);
 });
 
-//cursos pointer, que pase el mause y aparexca click
+
 
 //Proporcionando datos a la tabla de indicadores
 // Obtener los datos de la API
+
 fetch("./data/ghibli/ghibli.json")
   .then((response) => response.json())
   .then((data) => {
@@ -244,3 +238,9 @@ fetch("./data/ghibli/ghibli.json")
     // Agregar la tabla al documento
     document.body.appendChild(table);
   });
+
+
+// se muestran las peliculas y las opciones para los filtros de director y año
+showMovies(dataStudioGhibli);
+showSelect(dataStudioGhibli);
+
