@@ -13,6 +13,7 @@ const modal = document.getElementById("modal");
 const modalInfo = document.getElementById("modal-info");
 const close = document.getElementById("close");
 const cardTitle = document.getElementById("card-title");
+const buttonBackToMovies = document.getElementById("backToMovies")
 
 
 //se obtienen los elementos de las opciones de busqueda
@@ -22,10 +23,11 @@ const inputBuscar = document.getElementById("search");
 const selectOrderMovies = document.getElementById("order-movies");
 
 
+buttonBackToMovies.style.display="none"
 //muestra las peliculas
 function showMovies(films) {
   cardContainer.innerHTML = "";
-
+  buttonBackToMovies.style.display="none"
   films.forEach((film) => {
     //se muestra las peliculas, se combina HTML en el JS con las comillas invertidas
     //se pone el mismo id a los 3 elementos, titulo, imagen, div para identificar el evento del click
@@ -81,6 +83,7 @@ function showSelect(films) {
 
 
 function showInfoFilm(filmId) {
+  buttonBackToMovies.style.display="block"
   cardContainer.innerHTML = "";
   cardCharacters.innerHTML = "<h2>Personajes<hr><br></h2>";
 
@@ -107,19 +110,21 @@ function showInfoFilm(filmId) {
     });
   });
 
-  cardPlaces.innerHTML = "<h2>Lugares<hr></h2>";
-  filmSelected.locations.forEach((location) => {
-    const optionLocation = `
-      <div id="information-card>
-        <div name="location" id=${location.name}>
-        <p class="title-card">${location.name}</p>
-        <img class="card" src=${location.img}>
+  if(filmSelected.locations.length > 0){
+    cardPlaces.innerHTML = "<h2>Lugares<hr></h2>";
+    filmSelected.locations.forEach((location) => {
+      const optionLocation = `
+        <div id="information-card>
+          <div name="location" id=${location.name}>
+          <p class="title-card">${location.name}</p>
+          <img class="card" src=${location.img}>
+          </div>
         </div>
-      </div>
-        `;
+          `;
 
-    cardPlaces.innerHTML += optionLocation;
-  });
+      cardPlaces.innerHTML += optionLocation;
+    });
+  }
 
   if (filmSelected.vehicles.length > 0) {
     cardVehicles.innerHTML = "<h2>Vehiculos<hr></h2>";
@@ -137,6 +142,7 @@ function showInfoFilm(filmId) {
 }
 
 function showInfoCharacter(character) {
+  buttonBackToMovies.style.display="block"
   const info = `
     <p class="title-card"><b>${character.name.toUpperCase()}</b></p><br><br>
     <p><b>Gender:</b> ${character.gender}</p>
@@ -243,4 +249,11 @@ fetch("./data/ghibli/ghibli.json")
 // se muestran las peliculas y las opciones para los filtros de director y año
 showMovies(dataStudioGhibli);
 showSelect(dataStudioGhibli);
-
+buttonBackToMovies.addEventListener("click",backToMovies)
+function backToMovies(){
+  cardCharacters.innerHTML = "";
+  cardPlaces.innerHTML = "";
+  cardVehicles.innerHTML = "";
+  cardTitle.innerHTML = "";
+  showMovies(dataStudioGhibli)
+}

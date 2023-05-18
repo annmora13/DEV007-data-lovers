@@ -19,7 +19,7 @@
       <div class="linea"></div>
       <br><br>
 
-    <div class="div-select">
+    <section class="div-select">
 
       <div id="search-button">
         <input type="text" class="select" id="search" placeholder="Buscar por el nombre" required>
@@ -41,10 +41,13 @@
           <option value="ZA">Ordenar de la Z - A</option>
         </select>
       </div>
-
-    </div>
+      <div>
+        <button class="select" id="backToMovies">Regresar a las peliculas</button>
+      </div>
+      
+    </section>
     
-
+  
     <div class="card-container" id="card-container"></div>
     <div class="card-container" id="card-title"></div>
     <div class="card-container" id="card-characters"></div>
@@ -52,8 +55,24 @@
     <div class="card-container" id="card-vehicles"></div>
     <div class="modal-container" id="modal">
       <div class="modal" name= "character"  id="modal-info"></div>
-      <button  id="close">X</button>
+      <button class="button-modal" id="close">X</button>
     </div>
+  
+
+  <hr width="100%">
+  <table id="table">
+    <h1>Información adicional</h1>
+      <tr>
+        <th>Película</th>
+        <th>Descripción</th>
+        <th>Puntaje</th>
+        <th>Director</th>
+        <th>Productor</th>
+        <th>Año</th>
+      </tr>
+  </table>
+
+
 
     <hr width="100%">
     <table id="table" border="1">

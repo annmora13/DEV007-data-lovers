@@ -111,6 +111,7 @@ img.card:hover {
 
 }
 
+
 .select {
     display: none;
     color: white;
@@ -182,7 +183,7 @@ input::placeholder {
     height: 62%;
 
 }
-button {
+.button-modal {
     background-color: #47a386;
     border: 0;
     border-radius: 5px;
